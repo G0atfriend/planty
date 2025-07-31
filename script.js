@@ -6,7 +6,71 @@
  * based on plant care categories (soil, light, water and DON'Ts).
  */
 
+// Plant data array. Will be initialised from plantsData.js and processed to
+// remove duplicates and assign new images from our curated collection.
 let plants = [];
+
+/*
+ * Mapping from plant IDs (as defined in plantsData.js) to cropped image
+ * filenames stored under the `images/` folder. For most entries the
+ * filenames correspond to new photographs provided in plant_images_all_60.zip.
+ * A handful of missing species have been mapped to closely related plants to
+ * ensure all flashcards display an image. If you add or remove plants,
+ * update this mapping accordingly.
+ */
+const imageMap = {
+  'cylindrical-snake-plant': '01_01_cylindrical_snake_plant.jpg',
+  'trailing-jade': '02_02_trailing_jade.jpg',
+  'pink-passion': '03_03_pink_passion.jpg',
+  'african-mask': '04_04_african_mask.jpg',
+  'calathea-makoyana': '05_05_calathea_makoyana.jpg',
+  'polka-dot-begonia': '06_06_polka_dot_begonia.jpg',
+  'velvet-cardboard-anthurium': '07_07_velvet_cardboard_anthurium.jpg',
+  'palm-begonia-indian-summer': '08_08_palm_begonia_indian_summer.jpg',
+  'strelitzia-bird-of-paradise-all-50-pure': '09_09_strelitzia_bird_of_paradise_all_50_pure.jpg',
+  'ocean-bambino-spider-plant': '10_10_ocean_bambino_spider_plant.jpg',
+  'tradescantia-nanouk': '11_11_tradescantia_nanouk.jpg',
+  'fittonia-verschaffeltii': '12_12_fittonia_verschaffeltii.jpg',
+  'white-wave-philodendron': '13_13_white_wave_philodendron.jpg',
+  'chinese-money-plant': '14_14_chinese_money_plant.jpg',
+  'shamrock-oxalis-milkii': '15_15_shamrock_oxalis_milkii.jpg',
+  'coleus-excellium-pinstripe-croton': '16_16_coleus_excellium_pinstripe_croton.jpg',
+  // red-beauty-philodendron does not have its own photo – reuse a related Philodendron image
+  'red-beauty-philodendron': '13_13_white_wave_philodendron.jpg',
+  // the following IDs map to their corresponding images; some are assigned
+  // to visually similar species where photos were unavailable
+  'nerve-plant': '24_24_nerve_plant.jpg',
+  'prayer-plant-lemon-lime': '25_25_prayer_plant_lemon_lime.jpg',
+  'parlour-palm': '26_26_parlour_palm.jpg',
+  'swiss-cheese-plant': '27_27_swiss_cheese_plant.jpg',
+  'dragon-tree': '28_28_dragon_tree.jpg',
+  'dwarf-fiddleleaf-fig': '29_29_dwarf_fiddleleaf_fig.jpg',
+  'monkey-mask': '30_30_monkey_mask.jpg',
+  'marble-queen-pothos': '31_31_marble_queen_pothos.jpg',
+  'golden-pothos-devils-ivy': '32_32_golden_pothos_devils_ivy.jpg',
+  'variegated-wax-plant': '33_33_variegated_wax_plant.jpg',
+  'pinstripe-calathea': '34_34_pinstripe_calathea.jpg',
+  'boston-fern': '35_35_boston_fern.jpg',
+  'kentia-palm': '36_36_kentia_palm.jpg',
+  'croton-mammi': '37_37_croton_mammi.jpg',
+  'rubber-plant-robusta': '38_38_rubber_plant_robusta.jpg',
+  'princess-plant': '40_40_princess_plant.jpg',
+  'maidenhair-fern': '41_41_maidenhair_fern.jpg',
+  'cast-iron-plant': '42_42_cast_iron_plant.jpg',
+  'asparagus-fern': '43_43_asparagus_fern.jpg',
+  'english-ivy': '44_44_english_ivy.jpg',
+  'variegated-wax-plant-hoya-tricolor': '46_46_variegated_wax_plant_hoya_tricolor.jpg',
+  // echeveria-spp lacked a photo – use a cactus image as a stand‑in
+  'echeveria-spp': '59_59_bunnyear_cactus.jpg',
+  'champion-pink-anthurium': '48_48_champion_pink_anthurium.jpg',
+  'raindrop-peperomia': '49_49_raindrop_peperomia.jpg',
+  // pepperspot-peperomia lacked a photo – reuse another Peperomia image
+  'pepperspot-peperomia': '49_49_raindrop_peperomia.jpg',
+  'zebra-plant': '55_55_zebra_plant.jpg',
+  'gymnocalycium-cactus': '57_57_gymnocalycium_cactus.jpg',
+  'bunnyear-cactus': '59_59_bunnyear_cactus.jpg',
+  'pink-anthurium': '60_60_pink_anthurium.jpg'
+};
 // State variables for the quiz
 let currentQuestion = null;
 let quizType = 'who';
@@ -150,17 +214,20 @@ function showCurrentQuestion() {
   const nextBtn = document.getElementById('nextQuestionButton');
   const imgWrap = document.getElementById('quizImageWrap');
   const imgEl = document.getElementById('quizImage');
+  const nameEl = document.getElementById('quizPlantName');
   // reset UI
   feedbackEl.textContent = '';
   optionsList.innerHTML = '';
   nextBtn.classList.add('hidden');
   // determine question and options based on type
+  // Determine question content based on type
   if (qObj.type === 'who') {
-    // show image and ask for common name
+    // In a "Who am I?" question we display only the image; plant name is hidden
     imgWrap.classList.remove('hidden');
     imgEl.src = 'images/' + qObj.plant.image;
+    nameEl.textContent = '';
     questionEl.innerHTML = 'Identify this plant:';
-    // options are names of 4 plants including correct
+    // options are names of 4 plants including the correct one
     const otherPlants = plants.filter((p) => p.id !== qObj.plant.id);
     shuffle(otherPlants);
     const optionPlants = [qObj.plant, ...otherPlants.slice(0, 3)];
@@ -170,7 +237,6 @@ function showCurrentQuestion() {
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       btn.innerHTML = `${p.common_name} <br><em>${p.latin_name || ''}</em>`;
-      // mark if this option is correct
       btn.dataset.correct = p.id === qObj.plant.id ? 'true' : 'false';
       btn.onclick = () => {
         const isCorrect = p.id === qObj.plant.id;
@@ -180,8 +246,10 @@ function showCurrentQuestion() {
       optionsList.appendChild(li);
     });
   } else {
-    // hide image for care questions
-    imgWrap.classList.add('hidden');
+    // Care questions ("like" or "dont"): display image and plant name alongside the question
+    imgWrap.classList.remove('hidden');
+    imgEl.src = 'images/' + qObj.plant.image;
+    nameEl.innerHTML = `<strong>${qObj.plant.common_name}</strong><br><em>${qObj.plant.latin_name || ''}</em>`;
     // choose category for this question
     const cat = qObj.category;
     const categoryLabel = cat.toUpperCase();
@@ -189,15 +257,13 @@ function showCurrentQuestion() {
     if (qObj.type === 'like') {
       questionEl.innerHTML = `What is the recommended ${categoryLabel} for <strong>${qObj.plant.common_name}</strong>?`;
     } else {
-      // don't quiz
       questionEl.innerHTML = `What should you AVOID for <strong>${qObj.plant.common_name}</strong> when it comes to ${categoryLabel}?`;
     }
-    // compute correct answer(s)
+    // compute the correct answer
     let correctAnswer = '';
     if (qObj.type === 'like') {
       correctAnswer = qObj.plant[cat] ? qObj.plant[cat].toString() : '';
     } else {
-      // for don't, use donts field; if there are multiple lines, pick first line
       correctAnswer = qObj.plant.donts ? qObj.plant.donts.toString().split('\n')[0] : '';
     }
     // gather wrong answers from other plants for this category
@@ -297,12 +363,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // initialise plant data from the global variable created in plantsData.js
   // plantData is defined in plantsData.js and loaded via a script tag in index.html
   if (typeof plantData !== 'undefined') {
-    plants = plantData;
+    // Start with the raw data
+    plants = plantData.slice();
+    // Remove duplicate entries based on common_name (case‑insensitive).
+    const seenNames = {};
+    const deduped = [];
+    plants.forEach((p) => {
+      const nameKey = (p.common_name || '').trim().toLowerCase();
+      if (!seenNames[nameKey]) {
+        // Apply image override if available
+        if (imageMap[p.id]) {
+          p.image = imageMap[p.id];
+        }
+        deduped.push(p);
+        seenNames[nameKey] = true;
+      }
+    });
+    plants = deduped;
   } else {
     console.error('Plant data missing: ensure plantsData.js is included');
     plants = [];
   }
-  // build the flashcards
+  // build the flashcards with the deduplicated data
   buildCards();
   // navigation buttons for toggling views
   const cardsBtn = document.getElementById('showCards');

@@ -233,6 +233,28 @@ nav {
   display: none;
 }
 
+/* Quiz image and plant name styling */
+#quizImageWrap {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#quizImageWrap img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#quizPlantName {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: #065f46;
+}
+#quizPlantName em {
+  color: #6b7280;
+}
+
 /* Quiz setup and results panels */
 #quizSetup,
 #quizResults {
