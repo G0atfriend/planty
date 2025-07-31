@@ -15,6 +15,10 @@
         <button id="showCards" class="nav-btn active">Flashcards</button>
         <button id="showQuiz" class="nav-btn">Quiz</button>
       </nav>
+      <!-- Toggle to enable/disable description hover behavior -->
+      <label id="detailsToggleLabel" class="details-toggle">
+        <input type="checkbox" id="toggleDetails" checked /> Show details on hover
+      </label>
     </header>
 
     <!-- Flashcards container -->
@@ -22,14 +26,47 @@
 
     <!-- Quiz section (initially hidden via JS toggling) -->
     <section id="quizSection">
-      <div id="quizContainer">
-        <h2>Planty Quiz</h2>
+      <!-- Setup panel for configuring quizzes -->
+      <div id="quizSetup">
+        <h2>Select a Quiz</h2>
+        <div class="quiz-type">
+          <label><input type="radio" name="quizType" value="who" checked /> Planty? Who am I?</label>
+          <label><input type="radio" name="quizType" value="like" /> Planty? What do you like?</label>
+          <label><input type="radio" name="quizType" value="dont" /> Planty? What DON'T you like?</label>
+        </div>
+        <div id="likeCategories" class="quiz-options hidden">
+          <p>Choose categories to include:</p>
+          <label><input type="checkbox" value="soil" checked /> Soil</label>
+          <label><input type="checkbox" value="light" checked /> Light</label>
+          <label><input type="checkbox" value="water" checked /> Water</label>
+        </div>
+        <div id="questionCount" class="quiz-options">
+          <p>Number of questions:</p>
+          <label><input type="radio" name="questionCount" value="10" checked />10</label>
+          <label><input type="radio" name="questionCount" value="20" />20</label>
+          <label><input type="radio" name="questionCount" value="all" />All</label>
+          <!-- All Planties option only applies to Who am I quiz -->
+          <label id="allPlantiesLabel" class="hidden"><input type="radio" name="questionCount" value="allplanties" />All Planties (60)</label>
+        </div>
+        <button id="startQuizButton" class="start-btn">Start Quiz</button>
+      </div>
+      <!-- Container for quiz questions -->
+      <div id="quizContainer" class="hidden">
+        <h2 id="quizTitle">Planty Quiz</h2>
+        <div id="quizImageWrap" class="quiz-image hidden">
+          <img id="quizImage" src="" alt="Plant image" />
+        </div>
         <p id="quizQuestion" class="question"></p>
-        <!-- Button to reveal the multiple‑choice options -->
-        <button id="revealOptionsButton" class="reveal-btn">Reveal Options</button>
-        <ul id="quizOptions" class="options hidden"></ul>
+        <ul id="quizOptions" class="options"></ul>
         <p id="quizFeedback" class="feedback"></p>
         <button id="nextQuestionButton" class="next-btn hidden">Next Question</button>
+      </div>
+      <!-- Results panel displayed after finishing a quiz -->
+      <div id="quizResults" class="hidden">
+        <h2>Quiz Results</h2>
+        <p id="quizScore"></p>
+        <p id="quizRating"></p>
+        <button id="restartQuizButton" class="start-btn">Restart Quiz</button>
       </div>
     </section>
 

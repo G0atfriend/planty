@@ -7,7 +7,13 @@
  */
 
 let plants = [];
+// State variables for the quiz
 let currentQuestion = null;
+let quizType = 'who';
+let quizCategories = ['soil', 'light', 'water'];
+let questionList = [];
+let currentQuestionIndex = 0;
+let score = 0;
 
 /**
  * Shuffle an array in place using the Fisher–Yates algorithm.
@@ -47,11 +53,11 @@ function buildCards() {
     body.innerHTML = `
       <h3>${p.common_name}</h3>
       <p><em>${p.latin_name || ''}</em></p>
-      ${p.type ? `<p><strong>Type:</strong> ${p.type}</p>` : ''}
-      ${soil ? `<p><strong>Soil:</strong> ${soil}</p>` : ''}
-      ${light ? `<p><strong>Light:</strong> ${light}</p>` : ''}
-      ${water ? `<p><strong>Water:</strong> ${water}</p>` : ''}
-      ${donts ? `<p><strong>DON'Ts:</strong> ${donts}</p>` : ''}
+      ${p.type ? `<p class="type"><strong>Type:</strong> ${p.type}</p>` : ''}
+      ${soil ? `<p class="soil detail"><strong>Soil:</strong> ${soil}</p>` : ''}
+      ${light ? `<p class="light detail"><strong>Light:</strong> ${light}</p>` : ''}
+      ${water ? `<p class="water detail"><strong>Water:</strong> ${water}</p>` : ''}
+      ${donts ? `<p class="donts detail"><strong>DON'Ts:</strong> ${donts}</p>` : ''}
     `;
     card.appendChild(body);
     grid.appendChild(card);
@@ -60,112 +66,228 @@ function buildCards() {
 }
 
 /**
- * Generate a new quiz question.
- * Chooses a random plant and a random category, then composes the
- * question text, the correct answer and a list of wrong answers.
+ * Build the list of questions based on the selected quiz type and categories.
+ * For 'who' quiz: questionList contains one entry per plant (optionally limited).
+ * For 'like' and 'dont' quizzes: there will be one entry per selected category per plant.
+ * @param {string} qType
+ * @param {string[]} categories
+ * @returns {Array<Object>} questionList
  */
-function generateQuestion() {
-  const categories = ['soil', 'light', 'water', 'donts'];
-  // pick a random plant
-  const plant = plants[Math.floor(Math.random() * plants.length)];
-  // pick a random category
-  const category = categories[Math.floor(Math.random() * categories.length)];
-  const questionText = `What is the recommended ${category.toUpperCase()} for <strong>${plant.common_name}</strong>?`;
-  const correct = plant[category] ? plant[category].toString() : '';
-  // gather all unique answers for the same category from other plants
-  const otherAnswers = plants
-    .filter((p) => p.id !== plant.id && p[category])
-    .map((p) => p[category].toString())
-    .filter((ans) => ans && ans !== correct);
-  // pick up to 3 random wrong answers
-  shuffle(otherAnswers);
-  const wrongOptions = otherAnswers.slice(0, 3);
-  // assemble options and shuffle
-  const allOptions = shuffle([correct, ...wrongOptions]);
-  return {
-    plant: plant,
-    category: category,
-    question: questionText,
-    correct: correct,
-    options: allOptions,
-  };
+function buildQuestionList(qType, categories) {
+  const list = [];
+  if (qType === 'who') {
+    plants.forEach((p) => {
+      list.push({ plant: p, type: 'who' });
+    });
+  } else if (qType === 'like' || qType === 'dont') {
+    plants.forEach((p) => {
+      categories.forEach((cat) => {
+        // ensure the plant has data for this category
+        if (p[cat]) {
+          list.push({ plant: p, type: qType, category: cat });
+        }
+      });
+    });
+  }
+  return list;
 }
 
 /**
- * Render the current question to the quiz UI.
+ * Start a quiz based on the current settings in the UI.
  */
-function renderQuestion() {
+function startQuiz() {
+  // read quiz type
+  const selectedType = document.querySelector('input[name="quizType"]:checked').value;
+  quizType = selectedType;
+  // read selected categories (for like/dont)
+  const selectedCategories = Array.from(
+    document.querySelectorAll('#likeCategories input[type="checkbox"]:checked')
+  ).map((el) => el.value);
+  quizCategories = selectedCategories.length > 0 ? selectedCategories : ['soil', 'light', 'water'];
+  // build full question list
+  questionList = buildQuestionList(quizType, quizCategories);
+  // decide number of questions
+  const qCountVal = document.querySelector('input[name="questionCount"]:checked').value;
+  let maxQuestions;
+  if (qCountVal === 'allplanties') {
+    maxQuestions = 60;
+  } else if (qCountVal === 'all') {
+    maxQuestions = questionList.length;
+  } else {
+    maxQuestions = parseInt(qCountVal, 10);
+  }
+  // randomise questions and limit to requested number
+  shuffle(questionList);
+  if (questionList.length > maxQuestions) {
+    questionList = questionList.slice(0, maxQuestions);
+  }
+  currentQuestionIndex = 0;
+  score = 0;
+  // hide setup and show quiz container
+  document.getElementById('quizSetup').classList.add('hidden');
+  document.getElementById('quizResults').classList.add('hidden');
+  document.getElementById('quizContainer').classList.remove('hidden');
+  // set title
+  const titleEl = document.getElementById('quizTitle');
+  if (quizType === 'who') {
+    titleEl.textContent = 'Planty? Who am I?';
+  } else if (quizType === 'like') {
+    titleEl.textContent = 'Planty? What do you like?';
+  } else {
+    titleEl.textContent = "Planty? What DON'T you like?";
+  }
+  showCurrentQuestion();
+}
+
+/**
+ * Display the current question from questionList.
+ */
+function showCurrentQuestion() {
+  const qObj = questionList[currentQuestionIndex];
   const questionEl = document.getElementById('quizQuestion');
   const optionsList = document.getElementById('quizOptions');
   const feedbackEl = document.getElementById('quizFeedback');
-  const revealBtn = document.getElementById('revealOptionsButton');
   const nextBtn = document.getElementById('nextQuestionButton');
-
+  const imgWrap = document.getElementById('quizImageWrap');
+  const imgEl = document.getElementById('quizImage');
   // reset UI
   feedbackEl.textContent = '';
   optionsList.innerHTML = '';
-  optionsList.classList.add('hidden');
-  revealBtn.classList.remove('hidden');
   nextBtn.classList.add('hidden');
-
-  questionEl.innerHTML = currentQuestion.question;
-
-  // populate options when reveal button is clicked
-  revealBtn.onclick = () => {
-    revealBtn.classList.add('hidden');
-    optionsList.classList.remove('hidden');
-    currentQuestion.options.forEach((opt) => {
+  // determine question and options based on type
+  if (qObj.type === 'who') {
+    // show image and ask for common name
+    imgWrap.classList.remove('hidden');
+    imgEl.src = 'images/' + qObj.plant.image;
+    questionEl.innerHTML = 'Identify this plant:';
+    // options are names of 4 plants including correct
+    const otherPlants = plants.filter((p) => p.id !== qObj.plant.id);
+    shuffle(otherPlants);
+    const optionPlants = [qObj.plant, ...otherPlants.slice(0, 3)];
+    shuffle(optionPlants);
+    optionPlants.forEach((p) => {
       const li = document.createElement('li');
       const btn = document.createElement('button');
       btn.className = 'option-btn';
-      // store the raw answer on the element for later comparison
-      btn.dataset.answer = opt;
-      btn.dataset.correct = opt === currentQuestion.correct ? 'true' : 'false';
-      // convert newlines for display
-      btn.innerHTML = opt.replace(/\n/g, '<br>');
-      btn.onclick = () => handleAnswer(btn, opt);
+      btn.innerHTML = `${p.common_name} <br><em>${p.latin_name || ''}</em>`;
+      // mark if this option is correct
+      btn.dataset.correct = p.id === qObj.plant.id ? 'true' : 'false';
+      btn.onclick = () => {
+        const isCorrect = p.id === qObj.plant.id;
+        handleQuizAnswer(btn, isCorrect);
+      };
       li.appendChild(btn);
       optionsList.appendChild(li);
     });
-  };
+  } else {
+    // hide image for care questions
+    imgWrap.classList.add('hidden');
+    // choose category for this question
+    const cat = qObj.category;
+    const categoryLabel = cat.toUpperCase();
+    // set question text depending on quiz type
+    if (qObj.type === 'like') {
+      questionEl.innerHTML = `What is the recommended ${categoryLabel} for <strong>${qObj.plant.common_name}</strong>?`;
+    } else {
+      // don't quiz
+      questionEl.innerHTML = `What should you AVOID for <strong>${qObj.plant.common_name}</strong> when it comes to ${categoryLabel}?`;
+    }
+    // compute correct answer(s)
+    let correctAnswer = '';
+    if (qObj.type === 'like') {
+      correctAnswer = qObj.plant[cat] ? qObj.plant[cat].toString() : '';
+    } else {
+      // for don't, use donts field; if there are multiple lines, pick first line
+      correctAnswer = qObj.plant.donts ? qObj.plant.donts.toString().split('\n')[0] : '';
+    }
+    // gather wrong answers from other plants for this category
+    const wrongValues = plants
+      .filter((p) => p.id !== qObj.plant.id && p[cat])
+      .map((p) => {
+        if (qObj.type === 'like') {
+          return p[cat].toString();
+        } else {
+          return p.donts ? p.donts.toString().split('\n')[0] : '';
+        }
+      })
+      .filter((ans) => ans && ans !== correctAnswer);
+    shuffle(wrongValues);
+    const options = [correctAnswer, ...wrongValues.slice(0, 3)];
+    shuffle(options);
+    options.forEach((opt) => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = opt.replace(/\n/g, '<br>');
+      btn.dataset.correct = opt === correctAnswer ? 'true' : 'false';
+      btn.onclick = () => {
+        const isCorrect = opt === correctAnswer;
+        handleQuizAnswer(btn, isCorrect);
+      };
+      li.appendChild(btn);
+      optionsList.appendChild(li);
+    });
+  }
 }
 
 /**
- * Handle the user's answer selection.
- * @param {HTMLElement} btn The button that was clicked
- * @param {string} selected The selected answer text
+ * Handle the quiz answer: mark correct/incorrect, update score, and show next button.
+ * @param {HTMLElement} btn
+ * @param {boolean} isCorrect
  */
-function handleAnswer(btn, selected) {
-  const nextBtn = document.getElementById('nextQuestionButton');
+function handleQuizAnswer(btn, isCorrect) {
+  const buttons = document.querySelectorAll('#quizOptions .option-btn');
   const feedbackEl = document.getElementById('quizFeedback');
-  const buttons = document.querySelectorAll('.option-btn');
-  // disable all buttons after selection
+  const nextBtn = document.getElementById('nextQuestionButton');
+  // disable all buttons
   buttons.forEach((b) => (b.disabled = true));
-  // check correctness
-  const isCorrect = selected === currentQuestion.correct;
+  // update score
   if (isCorrect) {
+    score++;
     btn.classList.add('correct');
     feedbackEl.textContent = 'Correct!';
   } else {
     btn.classList.add('incorrect');
-    feedbackEl.textContent = 'Incorrect. The correct answer is highlighted in green.';
+    feedbackEl.textContent = 'Incorrect.';
   }
-  // in all cases, highlight the button that holds the correct answer
+  // highlight the correct button(s) using dataset
   buttons.forEach((b) => {
     if (b.dataset.correct === 'true') {
       b.classList.add('correct');
     }
   });
-  // show next button
   nextBtn.classList.remove('hidden');
+  // when next button clicked, go to next question or finish
+  nextBtn.onclick = () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questionList.length) {
+      showCurrentQuestion();
+    } else {
+      endQuiz();
+    }
+  };
 }
 
 /**
- * Advance to the next question.
+ * Finish the quiz: show the results and rating.
  */
-function nextQuestion() {
-  currentQuestion = generateQuestion();
-  renderQuestion();
+function endQuiz() {
+  document.getElementById('quizContainer').classList.add('hidden');
+  const resultsEl = document.getElementById('quizResults');
+  resultsEl.classList.remove('hidden');
+  const scoreEl = document.getElementById('quizScore');
+  const ratingEl = document.getElementById('quizRating');
+  scoreEl.textContent = `You scored ${score} out of ${questionList.length}`;
+  const percent = (score / questionList.length) * 100;
+  let rating;
+  if (percent >= 80) {
+    rating = 'Excellent! You really know your planties!';
+  } else if (percent >= 50) {
+    rating = 'Good job!';
+  } else {
+    rating = 'Needs improvement. Keep learning!';
+  }
+  ratingEl.textContent = rating;
 }
 
 /**
@@ -182,17 +304,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // build the flashcards
   buildCards();
-  // prepare the first question
-  currentQuestion = generateQuestion();
-  renderQuestion();
-
   // navigation buttons for toggling views
   const cardsBtn = document.getElementById('showCards');
   const quizBtn = document.getElementById('showQuiz');
   const cardsSection = document.getElementById('cardsSection');
   const quizSection = document.getElementById('quizSection');
 
-  // ensure the quiz section is hidden by default and flashcards are visible
+  // hide quiz section initially
   quizSection.style.display = 'none';
   cardsSection.style.display = '';
 
@@ -209,10 +327,46 @@ document.addEventListener('DOMContentLoaded', () => {
     quizSection.style.display = '';
   });
 
-  // hook up next question button
-  document
-    .getElementById('nextQuestionButton')
-    .addEventListener('click', () => {
-      nextQuestion();
+  // toggle likeCategories visibility based on quiz type
+  const quizTypeInputs = document.querySelectorAll('input[name="quizType"]');
+  quizTypeInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      const likeOptions = document.getElementById('likeCategories');
+      const qCountAllPlantiesLabel = document.getElementById('allPlantiesLabel');
+      if (input.value === 'like' || input.value === 'dont') {
+        likeOptions.classList.remove('hidden');
+      } else {
+        likeOptions.classList.add('hidden');
+      }
+      // show or hide All Planties option
+      if (input.value === 'who') {
+        qCountAllPlantiesLabel.classList.remove('hidden');
+      } else {
+        qCountAllPlantiesLabel.classList.add('hidden');
+      }
     });
+  });
+
+  // start quiz button
+  document.getElementById('startQuizButton').addEventListener('click', () => {
+    startQuiz();
+  });
+  // restart quiz button resets to setup view
+  document.getElementById('restartQuizButton').addEventListener('click', () => {
+    document.getElementById('quizResults').classList.add('hidden');
+    document.getElementById('quizSetup').classList.remove('hidden');
+  });
+
+  // detail toggle checkbox: show/hide details on hover
+  const toggleDetails = document.getElementById('toggleDetails');
+  if (toggleDetails) {
+    toggleDetails.addEventListener('change', (e) => {
+      const cardsGrid = document.querySelector('#cardsSection');
+      if (e.target.checked) {
+        cardsGrid.classList.remove('show-all-details');
+      } else {
+        cardsGrid.classList.add('show-all-details');
+      }
+    });
+  }
 });

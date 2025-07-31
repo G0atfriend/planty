@@ -101,6 +101,47 @@ nav {
   color: #065f46;
 }
 
+/* Color-coded categories for plant care details */
+.card-body .soil strong,
+.soil {
+  color: #a0522d; /* brown for soil */
+}
+.card-body .light strong,
+.light {
+  color: #d97706; /* gold for light */
+}
+.card-body .water strong,
+.water {
+  color: #2563eb; /* blue for water */
+}
+.card-body .donts strong,
+.donts {
+  color: #b91c1c; /* red for donts */
+}
+
+/* Hide details on hover only; show when show-all-details is present */
+#cardsSection .detail {
+  display: none;
+}
+#cardsSection.show-all-details .detail {
+  display: block;
+}
+.card:hover .detail {
+  display: block;
+}
+
+/* Details toggle styling */
+#detailsToggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #fef2f2;
+}
+#detailsToggleLabel input {
+  accent-color: #fff;
+}
+
 /* Quiz styling */
 #quizSection {
   padding: 1rem;
@@ -190,4 +231,53 @@ nav {
 /* Utility classes */
 .hidden {
   display: none;
+}
+
+/* Quiz setup and results panels */
+#quizSetup,
+#quizResults {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#quizSetup h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #065f46;
+}
+#quizSetup .quiz-type,
+#quizSetup .quiz-options {
+  margin-bottom: 1rem;
+}
+#quizSetup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+#quizSetup input[type="radio"],
+#quizSetup input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+#quizSetup .start-btn,
+#quizResults .start-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #34d399;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+#quizSetup .start-btn:hover,
+#quizResults .start-btn:hover {
+  background-color: #059669;
+}
+#quizResults h2 {
+  margin-top: 0;
+  color: #065f46;
 }

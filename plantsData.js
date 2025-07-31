@@ -4,44 +4,44 @@ const plantData = [
     "common_name": "Cylindrical Snake Plant",
     "latin_name": "Sansevieria cv. 'Cylindrica'",
     "type": "Succulent",
-    "soil": "Well‑draining cactus/succulent mix",
+    "soil": "Well\u2011draining cactus/succulent mix",
     "light": "Bright indirect to full sun",
     "water": "Allow soil to dry completely between waterings",
     "donts": "No soggy soil  \nNo heavy mixes  \nNo standing water",
-    "image": "01_Cylindrical_Snake_Plant.jpg"
+    "image": "succulent.jpg"
   },
   {
     "id": "trailing-jade",
     "common_name": "Trailing Jade",
     "latin_name": "Peperomia rotundifolia",
     "type": "Succulent",
-    "soil": "Loose peat‑based mix with perlite",
+    "soil": "Loose peat\u2011based mix with perlite",
     "light": "Bright indirect light (tolerates lower light)",
-    "water": "Water when top 1 cm of soil is dry",
+    "water": "Water when top 1\u202fcm of soil is dry",
     "donts": "No soggy soil  \nNo standing water  \nNo harsh direct sun",
-    "image": "02_Trailing_Jade.jpg"
+    "image": "succulent.jpg"
   },
   {
     "id": "pink-passion",
     "common_name": "Pink Passion",
     "latin_name": "Alocasia brancifolia 'Pink Passion'",
     "type": "Aroid",
-    "soil": "Moisture‑retentive aroid mix (soil + bark + coco coir)",
+    "soil": "Moisture\u2011retentive aroid mix (soil + bark + coco coir)",
     "light": "Bright indirect light",
     "water": "Keep evenly moist; water when top half of soil dries",
     "donts": "No direct sun  \nNo full drought  \nNo compact soil",
-    "image": "03_Pink_Passion.jpg"
+    "image": "aroid.jpg"
   },
   {
     "id": "african-mask",
     "common_name": "African Mask",
-    "latin_name": "Alocasia × amazonica 'Polly'",
+    "latin_name": "Alocasia \u00d7 amazonica 'Polly'",
     "type": "Aroid",
     "soil": "Chunky aroid mix (orchid bark + perlite + peat)",
     "light": "Bright indirect light",
-    "water": "Allow top ~2 cm soil to dry between waterings",
+    "water": "Allow top ~2\u202fcm soil to dry between waterings",
     "donts": "No waterlogged soil  \nNo harsh sun  \nNo standing water",
-    "image": "04_African_Mask.jpg"
+    "image": "aroid.jpg"
   },
   {
     "id": "calathea-makoyana",
@@ -50,20 +50,20 @@ const plantData = [
     "type": "Prayer Plant",
     "soil": "Rich organic potting mix (peat + perlite + bark), slightly acidic",
     "light": "Bright filtered/indirect light; medium to low tolerated",
-    "water": "Keep soil damp but not soggy; water when top ~2‑3 cm dries",
+    "water": "Keep soil damp but not soggy; water when top ~2\u20113\u202fcm dries",
     "donts": "No soggy soil  \nNo direct sun  \nNo low humidity",
-    "image": "05_Calathea_Makoyana.jpg"
+    "image": "prayer_plant.jpg"
   },
   {
     "id": "polka-dot-begonia",
     "common_name": "Polka Dot Begonia",
     "latin_name": "Begonia maculata",
     "type": "Begonia",
-    "soil": "Well‑draining, aerated potting mix (peat + perlite + bark)",
+    "soil": "Well\u2011draining, aerated potting mix (peat + perlite + bark)",
     "light": "Bright indirect light; morning sun OK",
-    "water": "Water when top ~1 cm dries; maintain moderate humidity (45–60%)",
+    "water": "Water when top ~1\u202fcm dries; maintain moderate humidity (45\u201360%)",
     "donts": "No dry soil  \nNo overwatering  \nNo harsh direct sun",
-    "image": "06_Begonia_Maculata.jpg"
+    "image": "begonia.jpg"
   },
   {
     "id": "velvet-cardboard-anthurium",
@@ -72,9 +72,9 @@ const plantData = [
     "type": "Aroid",
     "soil": "Porous aroid mix (orchid bark + peat + perlite)",
     "light": "Bright filtered/indirect light",
-    "water": "Water when top ~2 cm dries; humidity ≥60%",
+    "water": "Water when top ~2\u202fcm dries; humidity \u226560%",
     "donts": "No direct sun  \nNo prolonged dryness  \nNo soggy mix",
-    "image": "07_Anthurium_Clarinervium.jpg"
+    "image": "aroid.jpg"
   },
   {
     "id": "palm-begonia-indian-summer",
@@ -85,18 +85,18 @@ const plantData = [
     "light": "Bright indirect light; dappled sun OK",
     "water": "Keep soil lightly moist; slight surface drying",
     "donts": "No waterlogging  \nNo low humidity  \nNo harsh direct sun",
-    "image": "08_Begonia_Luxurians.jpg"
+    "image": "begonia.jpg"
   },
   {
     "id": "strelitzia-bird-of-paradise-all-50-pure",
     "common_name": "Strelitzia (Bird of Paradise) (All 50 Pure)",
     "latin_name": "Strelitzia nicolai",
     "type": "Palm",
-    "soil": "Rich loamy mix with peat + perlite; well‑draining",
+    "soil": "Rich loamy mix with peat + perlite; well\u2011draining",
     "light": "Bright indirect light; tolerates some morning or dappled sun",
-    "water": "Water when top ~5 cm dries; keep soil evenly moist",
+    "water": "Water when top ~5\u202fcm dries; keep soil evenly moist",
     "donts": "No standing water  \nNo harsh direct sun  \nNo low humidity",
-    "image": "10_Peperomias_Ruge.jpg"
+    "image": "palm.jpg"
   },
   {
     "id": "ocean-bambino-spider-plant",
@@ -107,40 +107,40 @@ const plantData = [
     "light": "Bright indirect light; light shade",
     "water": "Keep soil lightly moist during growing season; reduce in winter",
     "donts": "No soggy soil  \nNo direct harsh sun  \nNo compact soil",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "tradescantia-nanouk",
     "common_name": "Tradescantia 'Nanouk'",
     "latin_name": "Tradescantia albiflora 'Nanouk'",
     "type": "Trailing",
-    "soil": "Moist, well‑draining mix (potting + perlite)",
-    "light": "Bright indirect light; up to 1‑2 h morning sun",
-    "water": "Water when top ~2.5 cm soil feels dry; avoid wetting leaves",
+    "soil": "Moist, well\u2011draining mix (potting + perlite)",
+    "light": "Bright indirect light; up to 1\u20112\u202fh morning sun",
+    "water": "Water when top ~2.5\u202fcm soil feels dry; avoid wetting leaves",
     "donts": "No soggy soil  \nNo water on leaves  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "trailing.jpg"
   },
   {
     "id": "fittonia-verschaffeltii",
     "common_name": "Fittonia verschaffeltii",
     "latin_name": "Fittonia verschaffeltii",
     "type": "Herbaceous",
-    "soil": "Peat‑based rich mix with perlite",
+    "soil": "Peat\u2011based rich mix with perlite",
     "light": "Bright indirect light; medium",
     "water": "Keep soil moist but not waterlogged",
     "donts": "No soggy soil  \nNo direct sun  \nNo soil dryness",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "white-wave-philodendron",
     "common_name": "White Wave Philodendron",
     "latin_name": "Philodendron 'White Wave'",
     "type": "Aroid",
-    "soil": "Well‑draining aroid mix (peat + perlite + bark)",
+    "soil": "Well\u2011draining aroid mix (peat + perlite + bark)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Keep soil consistently moist but not soggy; allow top ~2 cm to dry between waterings",
+    "water": "Keep soil consistently moist but not soggy; allow top ~2\u202fcm to dry between waterings",
     "donts": "No direct sun  \nNo waterlogged soil  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "chinese-money-plant",
@@ -149,42 +149,42 @@ const plantData = [
     "type": "Herbaceous",
     "soil": "General potting mix with perlite for drainage",
     "light": "Bright indirect light; tolerates medium light",
-    "water": "Water when top ~2.5 cm dries; allow soil to dry between waterings",
+    "water": "Water when top ~2.5\u202fcm dries; allow soil to dry between waterings",
     "donts": "No soggy soil  \nNo overwatering  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "shamrock-oxalis-milkii",
     "common_name": "Shamrock (Oxalis milkii)",
     "latin_name": "Oxalis milkii",
     "type": "Bulb",
-    "soil": "Light, well‑draining mix with sand or perlite",
+    "soil": "Light, well\u2011draining mix with sand or perlite",
     "light": "Bright indirect light; some direct morning sun okay",
-    "water": "Keep soil evenly moist; water when top ~2.5–5 cm dries; reduce during dormancy",
+    "water": "Keep soil evenly moist; water when top ~2.5\u20135\u202fcm dries; reduce during dormancy",
     "donts": "No soggy soil  \nNo prolonged dry periods  \nNo standing water",
-    "image": "placeholder.png"
+    "image": "bulb.jpg"
   },
   {
     "id": "coleus-excellium-pinstripe-croton",
-    "common_name": "Coleus ‘Excellium’ (Pin‑Stripe Croton)",
+    "common_name": "Coleus \u2018Excellium\u2019 (Pin\u2011Stripe Croton)",
     "latin_name": "Coleus variegatum 'Excellium'",
     "type": "Coleus",
-    "soil": "Rich, fertile, well‑draining loamy mix",
+    "soil": "Rich, fertile, well\u2011draining loamy mix",
     "light": "Bright indirect light to partial sun; avoid harsh midday sun",
-    "water": "Keep soil evenly moist; water when top ~2.5 cm dries",
+    "water": "Keep soil evenly moist; water when top ~2.5\u202fcm dries",
     "donts": "No soggy soil  \nNo extended drought  \nNo harsh direct sun",
-    "image": "placeholder.png"
+    "image": "coleus.jpg"
   },
   {
     "id": "red-beauty-philodendron",
     "common_name": "Red Beauty Philodendron",
     "latin_name": "Philodendron 'Red Beauty'",
     "type": "Aroid",
-    "soil": "Well‑draining aroid mix (peat + perlite + bark)",
+    "soil": "Well\u2011draining aroid mix (peat + perlite + bark)",
     "light": "Bright indirect light; filtered light only",
     "water": "Allow top ~50% of soil to dry before watering; keep humidity moderate",
     "donts": "No sitting in wet soil  \nNo direct harsh sun  \nNo stagnant air",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "ocean-bambino-spider-plant",
@@ -195,40 +195,40 @@ const plantData = [
     "light": "Bright indirect light; shaded from hot sun",
     "water": "Keep soil lightly moist in growing season; water sparingly in winter",
     "donts": "No soggy soil  \nNo direct sun  \nNo tap water with chlorine",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "tradescantia-nanouk",
     "common_name": "Tradescantia 'Nanouk'",
     "latin_name": "Tradescantia albiflora 'Nanouk'",
     "type": "Trailing",
-    "soil": "Well‑draining mix (potting soil + perlite or coco coir)",
-    "light": "Bright indirect light; up to 6‑8 h bright indirect",
-    "water": "Water weekly or when top inch (~2.5 cm) soil dries; keep slightly moist",
+    "soil": "Well\u2011draining mix (potting soil + perlite or coco coir)",
+    "light": "Bright indirect light; up to 6\u20118\u202fh bright indirect",
+    "water": "Water weekly or when top inch (~2.5\u202fcm) soil dries; keep slightly moist",
     "donts": "No soggy soil  \nNo watering foliage  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "trailing.jpg"
   },
   {
     "id": "fittonia-verschaffeltii",
     "common_name": "Fittonia verschaffeltii",
     "latin_name": "Nerve Plant (Fittonia verschaffeltii)",
     "type": "Herbaceous",
-    "soil": "Peat‑based slightly acidic mix with perlite",
+    "soil": "Peat\u2011based slightly acidic mix with perlite",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Keep soil evenly moist; water when top ~1 cm dries",
+    "water": "Keep soil evenly moist; water when top ~1\u202fcm dries",
     "donts": "No soggy soil  \nNo direct sun  \nNo soil dryness",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "red-beauty-philodendron",
     "common_name": "Red Beauty Philodendron",
     "latin_name": "Philodendron 'Red Beauty'",
     "type": "Aroid",
-    "soil": "Well‑draining aroid mix (peat + perlite + bark)",
+    "soil": "Well\u2011draining aroid mix (peat + perlite + bark)",
     "light": "Bright indirect light; avoid harsh direct sun",
     "water": "Allow top half of soil to dry between waterings; keep humidity moderate",
     "donts": "No sitting in wet soil  \nNo harsh direct sun  \nNo stagnant air",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "ocean-bambino-spider-plant",
@@ -239,62 +239,62 @@ const plantData = [
     "light": "Bright indirect light; shade from hot sun",
     "water": "Keep soil lightly moist during growing seasons; reduce watering in winter",
     "donts": "No soggy soil  \nNo direct harsh sun  \nNo chlorinated tap water",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "tradescantia-nanouk",
     "common_name": "Tradescantia 'Nanouk'",
     "latin_name": "Tradescantia albiflora 'Nanouk'",
     "type": "Trailing",
-    "soil": "Moist, well‑draining mix (potting soil + perlite or coco coir)",
+    "soil": "Moist, well\u2011draining mix (potting soil + perlite or coco coir)",
     "light": "Bright indirect light; can tolerate morning sun",
-    "water": "Water when top ~2 cm soil dries; avoid overwatering",
+    "water": "Water when top ~2\u202fcm soil dries; avoid overwatering",
     "donts": "No soggy soil  \nNo wet foliage  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "trailing.jpg"
   },
   {
     "id": "nerve-plant",
     "common_name": "Nerve Plant",
     "latin_name": "Firdonia verschaffeltii",
     "type": "Herbaceous",
-    "soil": "Peat‑based mix with perlite",
+    "soil": "Peat\u2011based mix with perlite",
     "light": "Bright indirect light; avoid direct sun",
     "water": "Keep soil moist but not waterlogged",
     "donts": "No soggy soil  \nNo direct sun  \nNo soil dryness",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "prayer-plant-lemon-lime",
     "common_name": "Prayer Plant 'Lemon Lime'",
     "latin_name": "Maranta leuconeura 'Lemon Lime'",
     "type": "Prayer Plant",
-    "soil": "Well‑draining peat‑based mix, slightly acidic",
+    "soil": "Well\u2011draining peat\u2011based mix, slightly acidic",
     "light": "Bright indirect to medium light; avoid direct sun",
-    "water": "Keep soil evenly moist; water when top ~1 cm dries",
+    "water": "Keep soil evenly moist; water when top ~1\u202fcm dries",
     "donts": "No soil dryness  \nNo direct sun  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "prayer_plant.jpg"
   },
   {
     "id": "parlour-palm",
     "common_name": "Parlour Palm",
     "latin_name": "Chamaedorea elegans",
     "type": "Palm",
-    "soil": "Rich, well‑draining loamy mix",
+    "soil": "Rich, well\u2011draining loamy mix",
     "light": "Bright indirect light; tolerates medium light",
-    "water": "Water when top ~2 cm dries; keep soil evenly moist",
+    "water": "Water when top ~2\u202fcm dries; keep soil evenly moist",
     "donts": "No standing water  \nNo harsh direct sun  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "palm.jpg"
   },
   {
     "id": "swiss-cheese-plant",
     "common_name": "Swiss Cheese Plant",
     "latin_name": "Monstera deliciosa",
     "type": "Aroid",
-    "soil": "Well‑draining peat-based or aroid mix with perlite",
+    "soil": "Well\u2011draining peat-based or aroid mix with perlite",
     "light": "Bright indirect light; avoid full sun",
-    "water": "Allow top ~5 cm to dry before watering; keep slightly moist",
+    "water": "Allow top ~5\u202fcm to dry before watering; keep slightly moist",
     "donts": "No overwatering  \nNo low light  \nNo soggy soil",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "dragon-tree",
@@ -303,130 +303,130 @@ const plantData = [
     "type": "Dracaena",
     "soil": "Loose, loamy potting mix",
     "light": "Medium to bright indirect light; tolerates low light",
-    "water": "Allow 50–75% of soil to dry between waterings",
+    "water": "Allow 50\u201375% of soil to dry between waterings",
     "donts": "No overwatering  \nNo soggy soil  \nNo harsh direct sun",
-    "image": "placeholder.png"
+    "image": "dracaena.jpg"
   },
   {
     "id": "dwarf-fiddleleaf-fig",
-    "common_name": "Dwarf Fiddle‑Leaf Fig",
+    "common_name": "Dwarf Fiddle\u2011Leaf Fig",
     "latin_name": "Ficus lyrata",
     "type": "Fig",
-    "soil": "Well‑draining peat‑based or loamy mix",
+    "soil": "Well\u2011draining peat\u2011based or loamy mix",
     "light": "Bright indirect light; avoid harsh direct sun",
-    "water": "Water when top ~2.5 cm (1 in) soil is dry; typically every 1–2 weeks",
+    "water": "Water when top ~2.5\u202fcm (1\u202fin) soil is dry; typically every 1\u20132 weeks",
     "donts": "No overwatering  \nNo soggy soil  \nNo direct harsh sun",
-    "image": "placeholder.png"
+    "image": "fig.jpg"
   },
   {
     "id": "monkey-mask",
     "common_name": "Monkey Mask",
     "latin_name": "Monstera adansonii",
     "type": "Aroid",
-    "soil": "Moist, well‑draining peat‑based mix",
+    "soil": "Moist, well\u2011draining peat\u2011based mix",
     "light": "Bright indirect light; limited morning direct sun okay",
-    "water": "Water when top ~2–3 cm soil dries; allow drying between waterings",
+    "water": "Water when top ~2\u20133\u202fcm soil dries; allow drying between waterings",
     "donts": "No soggy soil  \nNo harsh direct sun  \nNo stagnant water",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "marble-queen-pothos",
     "common_name": "Marble Queen Pothos",
     "latin_name": "Epipremnum pinnatum 'Marble Queen'",
     "type": "Pothos",
-    "soil": "Well‑draining, rich potting mix (potting + perlite + bark)",
+    "soil": "Well\u2011draining, rich potting mix (potting + perlite + bark)",
     "light": "Bright indirect light (medium to bright; avoid low light to preserve variegation)",
-    "water": "Allow top ~50% of soil to dry between waterings (approx every 7–10 days)",
+    "water": "Allow top ~50% of soil to dry between waterings (approx every 7\u201310 days)",
     "donts": "No overwatering  \nNo low light  \nNo standing water",
-    "image": "placeholder.png"
+    "image": "pothos.jpg"
   },
   {
     "id": "golden-pothos-devils-ivy",
-    "common_name": "Golden Pothos (Devil’s Ivy)",
+    "common_name": "Golden Pothos (Devil\u2019s Ivy)",
     "latin_name": "Epipremnum aureum 'Golden Pothos'",
     "type": "Pothos",
     "soil": "General potting mix with perlite",
     "light": "Bright indirect to low light (tolerates low), avoid direct sun",
-    "water": "Water every 1–2 weeks; allow soil to dry between waterings",
+    "water": "Water every 1\u20132 weeks; allow soil to dry between waterings",
     "donts": "No soggy soil  \nNo harsh direct sun  \nNo stagnant water",
-    "image": "placeholder.png"
+    "image": "pothos.jpg"
   },
   {
     "id": "variegated-wax-plant",
     "common_name": "Variegated Wax Plant",
     "latin_name": "Hoya carnosa 'Tricolor'",
     "type": "Hoya",
-    "soil": "Well‑draining mix (potting soil + perlite + orchid bark)",
+    "soil": "Well\u2011draining mix (potting soil + perlite + orchid bark)",
     "light": "Bright indirect light; avoid full direct sun",
-    "water": "Water every 1–2 weeks; allow soil to dry out between waterings",
+    "water": "Water every 1\u20132 weeks; allow soil to dry out between waterings",
     "donts": "No overwatering  \nNo full shade  \nNo soggy soil",
-    "image": "placeholder.png"
+    "image": "hoya.jpg"
   },
   {
     "id": "pinstripe-calathea",
-    "common_name": "Pin‑Stripe Calathea",
+    "common_name": "Pin\u2011Stripe Calathea",
     "latin_name": "Calathea ornata",
     "type": "Prayer Plant",
-    "soil": "Rich, moist but well‑draining peat‑based mix (peat + perlite + bark)",
+    "soil": "Rich, moist but well\u2011draining peat\u2011based mix (peat + perlite + bark)",
     "light": "Bright filtered/indirect light; medium tolerated",
-    "water": "Keep soil moist but not soggy; water when top ~2.5 cm (1 in) dries",
+    "water": "Keep soil moist but not soggy; water when top ~2.5\u202fcm (1\u202fin) dries",
     "donts": "No soggy soil  \nNo direct sun  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "prayer_plant.jpg"
   },
   {
     "id": "boston-fern",
     "common_name": "Boston Fern",
     "latin_name": "Nephrolepis exaltata",
     "type": "Fern",
-    "soil": "Rich, organic, well‑draining but moisture‑holding mix (peat + perlite + compost)",
+    "soil": "Rich, organic, well\u2011draining but moisture\u2011holding mix (peat + perlite + compost)",
     "light": "Bright indirect light to light shade; avoid direct sun",
-    "water": "Keep soil consistently moist but not waterlogged; allow top ~2 cm to dry slightly between waterings; high humidity essential",
+    "water": "Keep soil consistently moist but not waterlogged; allow top ~2\u202fcm to dry slightly between waterings; high humidity essential",
     "donts": "No soggy soil  \nNo direct sun  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "fern.jpg"
   },
   {
     "id": "kentia-palm",
     "common_name": "Kentia Palm",
     "latin_name": "Kenthia Palm (Howea forsteriana)",
     "type": "Palm",
-    "soil": "Well‑draining sandy or loamy mix",
+    "soil": "Well\u2011draining sandy or loamy mix",
     "light": "Bright indirect to moderate light; tolerates low light; avoid harsh sun",
-    "water": "Water when top ~2 cm (1 in) soil is dry; allow soil to slightly dry between waterings; moderate humidity",
+    "water": "Water when top ~2\u202fcm (1\u202fin) soil is dry; allow soil to slightly dry between waterings; moderate humidity",
     "donts": "No standing water  \nNo harsh direct sun  \nNo overly dry air",
-    "image": "placeholder.png"
+    "image": "palm.jpg"
   },
   {
     "id": "croton-mammi",
     "common_name": "Croton 'Mammi'",
     "latin_name": "Codiaeum variegatum 'Mammi'",
     "type": "Croton",
-    "soil": "Rich, well‑draining potting mix",
+    "soil": "Rich, well\u2011draining potting mix",
     "light": "Bright indirect to partial direct sun (morning or filtered)",
-    "water": "Keep soil lightly moist; water when top ~2 cm dries",
+    "water": "Keep soil lightly moist; water when top ~2\u202fcm dries",
     "donts": "No low humidity  \nNo direct harsh sun  \nNo soggy soil",
-    "image": "placeholder.png"
+    "image": "croton.jpg"
   },
   {
     "id": "rubber-plant-robusta",
     "common_name": "Rubber Plant 'Robusta'",
     "latin_name": "Ficus elastica 'Robusta'",
     "type": "Fig",
-    "soil": "Well‑draining mix (peat + perlite + pine bark)",
+    "soil": "Well\u2011draining mix (peat + perlite + pine bark)",
     "light": "Bright indirect light; tolerates moderate light",
-    "water": "Water when top ~2.5 cm dries; allow soil to partially dry",
+    "water": "Water when top ~2.5\u202fcm dries; allow soil to partially dry",
     "donts": "No standing water  \nNo overwatering  \nNo direct harsh sun",
-    "image": "placeholder.png"
+    "image": "fig.jpg"
   },
   {
     "id": "monkey-mask",
     "common_name": "Monkey Mask",
     "latin_name": "Monstera adansonii",
     "type": "Aroid",
-    "soil": "Moist but well‑draining peat‑based aroid mix",
+    "soil": "Moist but well\u2011draining peat\u2011based aroid mix",
     "light": "Bright indirect light; limited morning sun OK",
-    "water": "Water when top ~2 cm dries; allow drying between waterings",
+    "water": "Water when top ~2\u202fcm dries; allow drying between waterings",
     "donts": "No soggy soil  \nNo harsh direct sun  \nNo stagnant water",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "princess-plant",
@@ -437,18 +437,18 @@ const plantData = [
     "light": "Bright indirect to moderate light",
     "water": "Keep evenly moist; water when surface begins to dry",
     "donts": "No soggy soil  \nNo waterlogging  \nNo full shade",
-    "image": "placeholder.png"
+    "image": "tree_foliage.jpg"
   },
   {
     "id": "maidenhair-fern",
     "common_name": "Maidenhair Fern",
     "latin_name": "Adiantum raddianum",
     "type": "Fern",
-    "soil": "Rich humus‑rich, well‑draining soil with organic matter",
+    "soil": "Rich humus\u2011rich, well\u2011draining soil with organic matter",
     "light": "Bright indirect light; avoid direct sun",
     "water": "Keep soil consistently moist but not waterlogged; water frequently to maintain even moisture",
     "donts": "No drying out  \nNo soggy soil  \nNo direct harsh sun",
-    "image": "placeholder.png"
+    "image": "fern.jpg"
   },
   {
     "id": "cast-iron-plant",
@@ -457,64 +457,64 @@ const plantData = [
     "type": "Herbaceous",
     "soil": "Loamy, humus-rich potting mix",
     "light": "Low to medium indirect light; avoid direct sun",
-    "water": "Allow soil to dry slightly between waterings; water when top ~2 cm dries",
+    "water": "Allow soil to dry slightly between waterings; water when top ~2\u202fcm dries",
     "donts": "No overwatering  \nNo harsh direct sun  \nNo dry soil",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "asparagus-fern",
     "common_name": "Asparagus Fern",
     "latin_name": "Asparagus setaceus",
     "type": "Herbaceous",
-    "soil": "Light, well‑draining mix (peat + perlite)",
+    "soil": "Light, well\u2011draining mix (peat + perlite)",
     "light": "Bright indirect light to medium; tolerates partial shade",
-    "water": "Water when top ~2 cm soil dries; keep evenly moist",
+    "water": "Water when top ~2\u202fcm soil dries; keep evenly moist",
     "donts": "No soggy soil  \nNo direct harsh sun  \nNo dry, dusty air",
-    "image": "placeholder.png"
+    "image": "herbaceous.jpg"
   },
   {
     "id": "english-ivy",
     "common_name": "English Ivy",
-    "latin_name": "Hedera helix ‘Green’",
+    "latin_name": "Hedera helix \u2018Green\u2019",
     "type": "Vine",
-    "soil": "Moist, well‑draining loamy mix",
+    "soil": "Moist, well\u2011draining loamy mix",
     "light": "Bright indirect to medium light; avoid intense direct sun",
-    "water": "Water when top ~2 cm dries; allow slight drying between waterings",
+    "water": "Water when top ~2\u202fcm dries; allow slight drying between waterings",
     "donts": "No soggy soil  \nNo harsh direct sun  \nNo low light leading to legginess",
-    "image": "placeholder.png"
+    "image": "vine.jpg"
   },
   {
     "id": "prayer-plant-lemon-lime",
     "common_name": "Prayer Plant 'Lemon Lime'",
     "latin_name": "Maranta leuconeura 'Lemon Lime'",
     "type": "Prayer Plant",
-    "soil": "Well‑draining peat‑based mix with perlite and compost; slightly acidic",
+    "soil": "Well\u2011draining peat\u2011based mix with perlite and compost; slightly acidic",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Keep soil consistently moist but not waterlogged; water every 1–2 weeks, allowing soil to dry halfway down",
+    "water": "Keep soil consistently moist but not waterlogged; water every 1\u20132 weeks, allowing soil to dry halfway down",
     "donts": "No soggy soil  \nNo direct sun  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "prayer_plant.jpg"
   },
   {
     "id": "variegated-wax-plant-hoya-tricolor",
     "common_name": "Variegated Wax Plant (Hoya Tricolor)",
     "latin_name": "Hoya carnosa 'Tricolor'",
     "type": "Hoya",
-    "soil": "Well‑draining mix (potting soil + perlite and optional orchid bark)",
+    "soil": "Well\u2011draining mix (potting soil + perlite and optional orchid bark)",
     "light": "Medium to bright indirect light; no direct sun",
-    "water": "Allow soil to dry between waterings; water every 1–2 weeks",
+    "water": "Allow soil to dry between waterings; water every 1\u20132 weeks",
     "donts": "No overwatering  \nNo full direct sun  \nNo prolonged dry spells",
-    "image": "placeholder.png"
+    "image": "hoya.jpg"
   },
   {
     "id": "echeveria-spp",
     "common_name": "Echeveria spp.",
     "latin_name": "Echeveria spp.",
     "type": "Succulent",
-    "soil": "Very well‑draining gritty cactus/succulent mix",
+    "soil": "Very well\u2011draining gritty cactus/succulent mix",
     "light": "Full bright light with at least some direct morning sun",
-    "water": "Allow soil to dry completely between waterings; soak‑and‑dry cycle",
+    "water": "Allow soil to dry completely between waterings; soak\u2011and\u2011dry cycle",
     "donts": "No overwatering  \nNo low light  \nNo water in rosette",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "champion-pink-anthurium",
@@ -523,31 +523,31 @@ const plantData = [
     "type": "Aroid",
     "soil": "Coarse, chunky mix (orchid bark + peat + perlite)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Water when 50‑75% of soil is dry; keep humidity high",
+    "water": "Water when 50\u201175% of soil is dry; keep humidity high",
     "donts": "No soggy soil  \nNo prolonged dryness  \nNo harsh direct sun",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "raindrop-peperomia",
     "common_name": "Raindrop Peperomia",
     "latin_name": "Peperomia polybotrya (Raindrop Peperomia)",
     "type": "Succulent",
-    "soil": "Well‑draining potting soil + perlite or coco chips",
+    "soil": "Well\u2011draining potting soil + perlite or coco chips",
     "light": "Bright indirect light; warm humidity preferred",
-    "water": "Water when top ~2 cm dries; avoid over‑watering; allow partial drying",
+    "water": "Water when top ~2\u202fcm dries; avoid over\u2011watering; allow partial drying",
     "donts": "No soggy soil  \nNo low humidity  \nNo prolonged overwatering",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "pepperspot-peperomia",
     "common_name": "Pepperspot Peperomia",
     "latin_name": "Peperomia pepperspot",
     "type": "Succulent",
-    "soil": "Well‑draining mix (peat + perlite)",
+    "soil": "Well\u2011draining mix (peat + perlite)",
     "light": "Bright indirect light; avoids direct sun",
-    "water": "Water when top ~1 cm dries; keep slightly moist",
+    "water": "Water when top ~1\u202fcm dries; keep slightly moist",
     "donts": "No soggy soil  \nNo direct sun  \nNo stagnant water",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "champion-pink-anthurium",
@@ -556,64 +556,64 @@ const plantData = [
     "type": "Aroid",
     "soil": "Coarse chunky mix (orchid bark + peat + perlite)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Water when 50–75% of soil is dry; maintain high humidity",
+    "water": "Water when 50\u201375% of soil is dry; maintain high humidity",
     "donts": "No soggy soil  \nNo prolonged dryness  \nNo harsh direct sun",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "echeveria-spp",
     "common_name": "Echeveria spp.",
     "latin_name": "Echeveria spp.",
     "type": "Succulent",
-    "soil": "Extremely well‑draining gritty cactus/succulent mix (perlite/pumice/sand)",
+    "soil": "Extremely well\u2011draining gritty cactus/succulent mix (perlite/pumice/sand)",
     "light": "Full bright light with some direct morning or afternoon sun",
-    "water": "Allow soil to dry completely between waterings; use soak‑and‑dry cycle",
+    "water": "Allow soil to dry completely between waterings; use soak\u2011and\u2011dry cycle",
     "donts": "No overwatering  \nNo low light (legginess)  \nNo water in rosette",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "raindrop-peperomia",
     "common_name": "Raindrop Peperomia",
     "latin_name": "Peperomia polybotrya (Raindrop)",
     "type": "Succulent",
-    "soil": "Well‑draining mix (peat or coco + perlite/chips)",
+    "soil": "Well\u2011draining mix (peat or coco + perlite/chips)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Water when top ~2 cm dries; avoid overwatering; allow partial drying",
+    "water": "Water when top ~2\u202fcm dries; avoid overwatering; allow partial drying",
     "donts": "No soggy soil  \nNo prolonged overwatering  \nNo low humidity",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "pepperspot-peperomia",
     "common_name": "Pepperspot Peperomia",
     "latin_name": "Peperomia pepperspot",
     "type": "Succulent",
-    "soil": "Well‑draining mix (peat + perlite)",
+    "soil": "Well\u2011draining mix (peat + perlite)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Water when top ~1 cm dries; keep soil slightly moist",
+    "water": "Water when top ~1\u202fcm dries; keep soil slightly moist",
     "donts": "No soggy soil  \nNo direct sun  \nNo stagnant water",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "zebra-plant",
     "common_name": "Zebra Plant",
     "latin_name": "Alocasia zebrina",
     "type": "Aroid",
-    "soil": "Rich, well‑draining mix (peat + perlite + coco coir + bark)",
+    "soil": "Rich, well\u2011draining mix (peat + perlite + coco coir + bark)",
     "light": "Bright indirect to dappled sunlight; avoid harsh midday sun",
-    "water": "Keep soil evenly moist; allow top ~2 cm to dry slightly before watering",
+    "water": "Keep soil evenly moist; allow top ~2\u202fcm to dry slightly before watering",
     "donts": "No soggy soil  \nNo low light  \nNo overly dry air",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   },
   {
     "id": "dwarf-fiddleleaf-fig",
-    "common_name": "Dwarf Fiddle‑Leaf Fig",
+    "common_name": "Dwarf Fiddle\u2011Leaf Fig",
     "latin_name": "Ficus lyrata",
     "type": "Fig",
-    "soil": "Well‑draining peat‑based or loamy mix",
+    "soil": "Well\u2011draining peat\u2011based or loamy mix",
     "light": "Bright indirect light; can tolerate some direct morning sun but avoid harsh midday light",
-    "water": "Water when top ~2.5 cm soil is dry (every 1–2 weeks); keep humidity moderate",
+    "water": "Water when top ~2.5\u202fcm soil is dry (every 1\u20132 weeks); keep humidity moderate",
     "donts": "No overwatering  \nNo soggy soil  \nNo sudden environment changes",
-    "image": "placeholder.png"
+    "image": "fig.jpg"
   },
   {
     "id": "gymnocalycium-cactus",
@@ -624,39 +624,39 @@ const plantData = [
     "light": "Full sun to bright indirect light",
     "water": "Water thoroughly when soil is completely dry; allow soaking and full dry cycle",
     "donts": "No overwatering  \nNo low light  \nNo soggy soil",
-    "image": "placeholder.png"
+    "image": "cactus.jpg"
   },
   {
     "id": "pepperspot-peperomia",
     "common_name": "Pepperspot Peperomia",
     "latin_name": "Peperomia pepperspot",
     "type": "Succulent",
-    "soil": "Well‑draining mix (peat + perlite)",
+    "soil": "Well\u2011draining mix (peat + perlite)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Water when top ~1 cm dries; maintain slightly moist soil",
+    "water": "Water when top ~1\u202fcm dries; maintain slightly moist soil",
     "donts": "No soggy soil  \nNo direct sun  \nNo stagnant water",
-    "image": "placeholder.png"
+    "image": "succulent.jpg"
   },
   {
     "id": "bunnyear-cactus",
-    "common_name": "Bunny‑Ear Cactus",
+    "common_name": "Bunny\u2011Ear Cactus",
     "latin_name": "Opuntia albispina",
     "type": "Cactus",
-    "soil": "Very well‑draining sandy/gritty cactus mix (perlite/sand + cactus mix)",
-    "light": "Full bright sun (6–8 hr direct light)",
+    "soil": "Very well\u2011draining sandy/gritty cactus mix (perlite/sand + cactus mix)",
+    "light": "Full bright sun (6\u20138\u202fhr direct light)",
     "water": "Allow soil to dry completely between thorough waterings; water sparingly (even less in winter)",
     "donts": "No overwatering  \nNo low light  \nNo soggy soil",
-    "image": "placeholder.png"
+    "image": "cactus.jpg"
   },
   {
     "id": "pink-anthurium",
     "common_name": "Pink Anthurium",
     "latin_name": "Anthurium andraeanum 'Champion Pink'",
     "type": "Aroid",
-    "soil": "Light, coarse, well‑draining mix (orchid bark + peat + perlite)",
+    "soil": "Light, coarse, well\u2011draining mix (orchid bark + peat + perlite)",
     "light": "Bright indirect light; avoid direct sun",
-    "water": "Keep soil lightly moist; water when top ~2.5 cm dries; maintain high humidity",
+    "water": "Keep soil lightly moist; water when top ~2.5\u202fcm dries; maintain high humidity",
     "donts": "No soggy soil  \nNo prolonged dryness  \nNo harsh direct sun",
-    "image": "placeholder.png"
+    "image": "aroid.jpg"
   }
 ];
