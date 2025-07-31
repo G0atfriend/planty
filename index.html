@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planty Flashcards &amp; Quiz</title>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Planty Flashcards</h1>
+      <!-- Simple navigation to switch between the flashcards and quiz -->
+      <nav>
+        <button id="showCards" class="nav-btn active">Flashcards</button>
+        <button id="showQuiz" class="nav-btn">Quiz</button>
+      </nav>
+    </header>
+
+    <!-- Flashcards container -->
+    <main id="cardsSection"></main>
+
+    <!-- Quiz section (initially hidden via JS toggling) -->
+    <section id="quizSection">
+      <div id="quizContainer">
+        <h2>Planty Quiz</h2>
+        <p id="quizQuestion" class="question"></p>
+        <!-- Button to reveal the multiple‑choice options -->
+        <button id="revealOptionsButton" class="reveal-btn">Reveal Options</button>
+        <ul id="quizOptions" class="options hidden"></ul>
+        <p id="quizFeedback" class="feedback"></p>
+        <button id="nextQuestionButton" class="next-btn hidden">Next Question</button>
+      </div>
+    </section>
+
+    <!-- Plant data definitions -->
+    <script src="plantsData.js"></script>
+    <!-- Quiz and flashcard logic -->
+    <script src="script.js"></script>
+  </body>
+</html>

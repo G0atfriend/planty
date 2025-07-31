@@ -1,0 +1,193 @@
+/* Base styling for the entire site */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+header {
+  background-color: #34d399; /* tealish green header to evoke plants */
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Flashcard grid styling */
+#cardsSection {
+  padding: 1rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 0.75rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  color: #065f46;
+}
+
+.card-body p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.card-body em {
+  color: #6b7280;
+}
+
+.card-body strong {
+  color: #065f46;
+}
+
+/* Quiz styling */
+#quizSection {
+  padding: 1rem;
+}
+
+#quizContainer {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#quizContainer h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #065f46;
+}
+
+.question {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.reveal-btn,
+.next-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #34d399;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  margin-bottom: 1rem;
+}
+
+.reveal-btn:hover,
+.next-btn:hover {
+  background-color: #059669;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.options li {
+  margin-bottom: 0.5rem;
+}
+
+.option-btn {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.option-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.option-btn.correct {
+  background-color: #d1fae5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.option-btn.incorrect {
+  background-color: #fee2e2;
+  border-color: #dc2626;
+  color: #7f1d1d;
+}
+
+.feedback {
+  font-weight: bold;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Utility classes */
+.hidden {
+  display: none;
+}
