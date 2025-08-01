@@ -14,6 +14,7 @@
       <nav>
         <button id="showCards" class="nav-btn active">Flashcards</button>
         <button id="showQuiz" class="nav-btn">Quiz</button>
+        <button id="showManage" class="nav-btn">Manage</button>
       </nav>
       <!-- Toggle to enable/disable description hover behavior -->
       <label id="detailsToggleLabel" class="details-toggle">
@@ -57,6 +58,10 @@
         <div id="quizImageWrap" class="quiz-image hidden">
           <!-- Image and plant name shown during quiz questions -->
           <img id="quizImage" src="" alt="Plant image" />
+          <!-- Button to pronounce the plant name using the Web Speech API -->
+          <button id="quizAudioBtn" class="audio-btn" aria-label="Hear plant name" type="button">
+            🔊
+          </button>
           <!-- Plant name (common and Latin) will be populated dynamically for non-'who' questions -->
           <p id="quizPlantName"></p>
         </div>
@@ -71,6 +76,35 @@
         <p id="quizScore"></p>
         <p id="quizRating"></p>
         <button id="restartQuizButton" class="start-btn">Restart Quiz</button>
+      </div>
+    </section>
+
+    <!-- Management section for adding/removing plants (hidden by default) -->
+    <section id="manageSection" class="hidden">
+      <h2>Manage Planties</h2>
+      <!-- Add new plant form -->
+      <div id="addPlantContainer" class="manage-block">
+        <h3>Add New Plant</h3>
+        <form id="plantForm">
+          <label>Common Name:<br><input type="text" id="newCommon" required /></label><br>
+          <label>Latin Name:<br><input type="text" id="newLatin" /></label><br>
+          <label>Type:<br><input type="text" id="newType" /></label><br>
+          <label>Soil:<br><textarea id="newSoil" rows="2"></textarea></label><br>
+          <label>Light:<br><textarea id="newLight" rows="2"></textarea></label><br>
+          <label>Water:<br><textarea id="newWater" rows="2"></textarea></label><br>
+          <label>DON'Ts:<br><textarea id="newDonts" rows="2"></textarea></label><br>
+          <label>Image:<br><input type="file" id="newImage" accept="image/*" /></label><br>
+          <!-- Canvas used to preview/crop the uploaded image -->
+          <canvas id="cropCanvas" width="300" height="300" style="display:none; border:1px solid #ccc; margin-top:0.5rem;"></canvas><br>
+          <button type="button" id="previewCropButton">Preview Crop</button>
+          <button type="submit" id="submitPlantButton">Submit Plant</button>
+        </form>
+        <p id="formStatus"></p>
+      </div>
+      <!-- Remove plant list -->
+      <div id="removePlantContainer" class="manage-block">
+        <h3>Remove Existing Plant</h3>
+        <ul id="removeList"></ul>
       </div>
     </section>
 

@@ -30,6 +30,22 @@ function normalizeAnswer(str) {
 // remove duplicates and assign new images from our curated collection.
 let plants = [];
 
+// Utility: speak a given text using the Web Speech API (if available).
+function speakText(text) {
+  if (!text) return;
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Use a pleasant voice if available (optional)
+    // Choose the first English voice for consistency
+    const voices = window.speechSynthesis.getVoices();
+    const enVoice = voices.find((v) => /en-GB|en-US/.test(v.lang));
+    if (enVoice) {
+      utterance.voice = enVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
 /*
  * Mapping from plant IDs (as defined in plantsData.js) to cropped image
  * filenames stored under the `images/` folder. For most entries the
@@ -132,7 +148,14 @@ function buildCards() {
     const card = document.createElement('div');
     card.className = 'card';
     const img = document.createElement('img');
-    img.src = 'images/' + p.image;
+    // Support data URLs as image sources for newly added plants. If the image
+    // property looks like a base64 data URI, use it directly; otherwise
+    // prefix with the images/ directory.
+    if (typeof p.image === 'string' && p.image.startsWith('data:')) {
+      img.src = p.image;
+    } else {
+      img.src = 'images/' + p.image;
+    }
     img.alt = p.common_name;
     card.appendChild(img);
     const body = document.createElement('div');
@@ -152,6 +175,17 @@ function buildCards() {
       ${donts ? `<p class="donts detail"><strong>DON'Ts:</strong> ${donts}</p>` : ''}
     `;
     card.appendChild(body);
+    // Add a speaker button to pronounce the plant name.
+    const audioBtn = document.createElement('button');
+    audioBtn.className = 'audio-btn';
+    audioBtn.setAttribute('aria-label', 'Hear plant name');
+    audioBtn.type = 'button';
+    audioBtn.innerHTML = '🔊';
+    audioBtn.onclick = () => {
+      const name = `${p.common_name || ''}${p.latin_name ? ' ' + p.latin_name : ''}`.trim();
+      speakText(name);
+    };
+    card.appendChild(audioBtn);
     grid.appendChild(card);
   });
   container.appendChild(grid);
@@ -244,17 +278,34 @@ function showCurrentQuestion() {
   const imgWrap = document.getElementById('quizImageWrap');
   const imgEl = document.getElementById('quizImage');
   const nameEl = document.getElementById('quizPlantName');
+  const audioBtn = document.getElementById('quizAudioBtn');
   // reset UI
   feedbackEl.textContent = '';
   optionsList.innerHTML = '';
   nextBtn.classList.add('hidden');
+  // hide audio button until we set it up for this question
+  if (audioBtn) {
+    audioBtn.onclick = null;
+    audioBtn.classList.add('hidden');
+  }
   // determine question and options based on type
   // Determine question content based on type
   if (qObj.type === 'who') {
     // In a "Who am I?" question we display only the image; plant name is hidden
     imgWrap.classList.remove('hidden');
-    imgEl.src = 'images/' + qObj.plant.image;
+    // Support DataURL images for newly added plants
+    if (typeof qObj.plant.image === 'string' && qObj.plant.image.startsWith('data:')) {
+      imgEl.src = qObj.plant.image;
+    } else {
+      imgEl.src = 'images/' + qObj.plant.image;
+    }
     nameEl.textContent = '';
+    // Set audio button to announce the plant name only on click (does not auto speak)
+    if (audioBtn) {
+      const speakName = `${qObj.plant.common_name || ''}${qObj.plant.latin_name ? ' ' + qObj.plant.latin_name : ''}`.trim();
+      audioBtn.onclick = () => speakText(speakName);
+      audioBtn.classList.remove('hidden');
+    }
     questionEl.innerHTML = 'Identify this plant:';
     // options are names of 4 plants including the correct one
     const otherPlants = plants.filter((p) => p.id !== qObj.plant.id);
@@ -277,8 +328,19 @@ function showCurrentQuestion() {
   } else {
     // Care questions ("like" or "dont"): display image and plant name alongside the question
     imgWrap.classList.remove('hidden');
-    imgEl.src = 'images/' + qObj.plant.image;
+    // Support DataURL images for newly added plants
+    if (typeof qObj.plant.image === 'string' && qObj.plant.image.startsWith('data:')) {
+      imgEl.src = qObj.plant.image;
+    } else {
+      imgEl.src = 'images/' + qObj.plant.image;
+    }
     nameEl.innerHTML = `<strong>${qObj.plant.common_name}</strong><br><em>${qObj.plant.latin_name || ''}</em>`;
+    // Set audio button to speak the plant name
+    if (audioBtn) {
+      const speakName = `${qObj.plant.common_name || ''}${qObj.plant.latin_name ? ' ' + qObj.plant.latin_name : ''}`.trim();
+      audioBtn.onclick = () => speakText(speakName);
+      audioBtn.classList.remove('hidden');
+    }
     // choose category for this question
     const cat = qObj.category;
     const categoryLabel = cat.toUpperCase();
@@ -420,28 +482,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // build the flashcards with the deduplicated data
   buildCards();
+
+  // Update the All Planties label to reflect the current number of plants
+  const allPlantiesLabel = document.getElementById('allPlantiesLabel');
+  if (allPlantiesLabel) {
+    // Remove existing number if present and append the current count
+    allPlantiesLabel.querySelector('input').nextSibling.textContent = `All Planties (${plants.length})`;
+  }
   // navigation buttons for toggling views
   const cardsBtn = document.getElementById('showCards');
   const quizBtn = document.getElementById('showQuiz');
+  const manageBtn = document.getElementById('showManage');
   const cardsSection = document.getElementById('cardsSection');
   const quizSection = document.getElementById('quizSection');
+  const manageSection = document.getElementById('manageSection');
 
   // hide quiz section initially
   quizSection.style.display = 'none';
   cardsSection.style.display = '';
+  if (manageSection) {
+    manageSection.classList.add('hidden');
+  }
 
   cardsBtn.addEventListener('click', () => {
     cardsBtn.classList.add('active');
     quizBtn.classList.remove('active');
+    if (manageBtn) manageBtn.classList.remove('active');
     cardsSection.style.display = '';
     quizSection.style.display = 'none';
+    if (manageSection) manageSection.classList.add('hidden');
   });
   quizBtn.addEventListener('click', () => {
     quizBtn.classList.add('active');
     cardsBtn.classList.remove('active');
+    if (manageBtn) manageBtn.classList.remove('active');
     cardsSection.style.display = 'none';
     quizSection.style.display = '';
+    if (manageSection) manageSection.classList.add('hidden');
   });
+
+  // Manage button toggles the management interface
+  if (manageBtn) {
+    manageBtn.addEventListener('click', () => {
+      manageBtn.classList.add('active');
+      cardsBtn.classList.remove('active');
+      quizBtn.classList.remove('active');
+      cardsSection.style.display = 'none';
+      quizSection.style.display = 'none';
+      if (manageSection) manageSection.classList.remove('hidden');
+    });
+  }
+
 
   // toggle likeCategories visibility based on quiz type
   const quizTypeInputs = document.querySelectorAll('input[name="quizType"]');
@@ -485,4 +576,138 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /**
+   * Populate the list of removable plants in the management section.
+   * Each list item shows the plant's common name and a button to remove it.
+   */
+  function populateRemoveList() {
+    const listEl = document.getElementById('removeList');
+    if (!listEl) return;
+    listEl.innerHTML = '';
+    plants.forEach((p, index) => {
+      const li = document.createElement('li');
+      li.textContent = p.common_name;
+      const btn = document.createElement('button');
+      btn.textContent = 'Remove';
+      btn.onclick = () => {
+        // Remove this plant from the array
+        plants.splice(index, 1);
+        // Rebuild cards and list
+        buildCards();
+        populateRemoveList();
+        // Optionally send a request to backend to delete the plant
+        console.log('Plant removed:', p.common_name);
+      };
+      li.appendChild(btn);
+      listEl.appendChild(li);
+    });
+  }
+
+  /**
+   * Handle reading and cropping an uploaded image file. The cropped image
+   * is stored in the variable currentImageDataUrl for later use.
+   */
+  let currentImageDataUrl = '';
+  function setupImageCropping() {
+    const fileInput = document.getElementById('newImage');
+    const cropCanvas = document.getElementById('cropCanvas');
+    if (!fileInput || !cropCanvas) return;
+    const ctx = cropCanvas.getContext('2d');
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          const side = Math.min(img.width, img.height);
+          const sx = (img.width - side) / 2;
+          const sy = (img.height - side) / 2;
+          // resize canvas to 300x300 for a consistent thumbnail
+          cropCanvas.width = 300;
+          cropCanvas.height = 300;
+          ctx.clearRect(0, 0, 300, 300);
+          ctx.drawImage(img, sx, sy, side, side, 0, 0, 300, 300);
+          cropCanvas.style.display = 'block';
+          currentImageDataUrl = cropCanvas.toDataURL('image/jpeg');
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /**
+   * Handle submission of the new plant form: gather data, add to the
+   * in-memory plants array, rebuild cards and remove list, and (optionally)
+   * send a POST request to a serverless endpoint with the plant data.
+   */
+  function setupPlantForm() {
+    const form = document.getElementById('plantForm');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById('formStatus');
+      // gather field values
+      const common = document.getElementById('newCommon').value.trim();
+      if (!common) {
+        statusEl.textContent = 'Common name is required.';
+        return;
+      }
+      const latin = document.getElementById('newLatin').value.trim();
+      const type = document.getElementById('newType').value.trim();
+      const soil = document.getElementById('newSoil').value.trim();
+      const light = document.getElementById('newLight').value.trim();
+      const water = document.getElementById('newWater').value.trim();
+      const donts = document.getElementById('newDonts').value.trim();
+      // generate a simple slug id from common name
+      const slug = common
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      // build plant object
+      const newPlant = {
+        id: slug,
+        common_name: common,
+        latin_name: latin,
+        type: type,
+        soil: soil,
+        light: light,
+        water: water,
+        donts: donts,
+        image: currentImageDataUrl || ''
+      };
+      // add to array
+      plants.push(newPlant);
+      // refresh UI
+      buildCards();
+      populateRemoveList();
+      // clear form fields
+      form.reset();
+      currentImageDataUrl = '';
+      const canvas = document.getElementById('cropCanvas');
+      if (canvas) {
+        canvas.style.display = 'none';
+      }
+      statusEl.textContent = 'Plant added locally. (No backend integration yet)';
+      // Example: send a POST request to a serverless function
+      /*
+      fetch('https://example.com/api/addPlant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newPlant)
+      }).then((res) => {
+        statusEl.textContent = res.ok ? 'Plant added successfully!' : 'Failed to add plant.';
+      }).catch((err) => {
+        statusEl.textContent = 'Error sending request.';
+      });
+      */
+    });
+  }
+
+  // Initialize remove list, cropping, and form
+  populateRemoveList();
+  setupImageCropping();
+  setupPlantForm();
 });

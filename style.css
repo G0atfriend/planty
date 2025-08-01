@@ -228,6 +228,106 @@ nav {
   margin: 0.5rem 0 1rem;
 }
 
+/* Audio button styling for flashcards and quiz */
+.audio-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #065f46;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.audio-btn:hover {
+  color: #059669;
+}
+
+/* Management section styling */
+#manageSection {
+  padding: 1rem;
+}
+#manageSection h2 {
+  margin-top: 0;
+  color: #065f46;
+}
+.manage-block {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.manage-block h3 {
+  margin-top: 0;
+  color: #065f46;
+}
+#plantForm label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+#plantForm input[type="text"],
+#plantForm textarea {
+  width: 100%;
+  padding: 0.4rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+#plantForm input[type="file"] {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+#plantForm button {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background-color: #34d399;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+#plantForm button:hover {
+  background-color: #059669;
+}
+#formStatus {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+#removeList {
+  list-style: none;
+  padding-left: 0;
+}
+#removeList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+}
+#removeList button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  background-color: #ef4444;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+#removeList button:hover {
+  background-color: #b91c1c;
+}
+
 /* Utility classes */
 .hidden {
   display: none;
