@@ -17,7 +17,8 @@
       </nav>
       <!-- Toggle to enable/disable description hover behavior -->
       <label id="detailsToggleLabel" class="details-toggle">
-        <input type="checkbox" id="toggleDetails" checked /> Show details on hover
+        <!-- The checkbox remains checked so that by default the details are visible; the label now reads "Hide details" for clarity -->
+        <input type="checkbox" id="toggleDetails" checked /> Hide details
       </label>
     </header>
 
@@ -46,7 +47,7 @@
           <label><input type="radio" name="questionCount" value="20" />20</label>
           <label><input type="radio" name="questionCount" value="all" />All</label>
           <!-- All Planties option only applies to Who am I quiz -->
-          <label id="allPlantiesLabel" class="hidden"><input type="radio" name="questionCount" value="allplanties" />All Planties (60)</label>
+          <label id="allPlantiesLabel" class="hidden"><input type="radio" name="questionCount" value="allplanties" />All Planties (67)</label>
         </div>
         <button id="startQuizButton" class="start-btn">Start Quiz</button>
       </div>

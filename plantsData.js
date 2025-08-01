@@ -648,15 +648,93 @@ const plantData = [
     "donts": "No overwatering  \nNo low light  \nNo soggy soil",
     "image": "cactus.jpg"
   },
+  /* Removed duplicate Pink Anthurium entry to avoid confusion with Champion Pink Anthurium */
   {
-    "id": "pink-anthurium",
-    "common_name": "Pink Anthurium",
-    "latin_name": "Anthurium andraeanum 'Champion Pink'",
-    "type": "Aroid",
-    "soil": "Light, coarse, well\u2011draining mix (orchid bark + peat + perlite)",
-    "light": "Bright indirect light; avoid direct sun",
-    "water": "Keep soil lightly moist; water when top ~2.5\u202fcm dries; maintain high humidity",
-    "donts": "No soggy soil  \nNo prolonged dryness  \nNo harsh direct sun",
-    "image": "aroid.jpg"
-  }
+    "id": "pilea-moon-valley",
+    "common_name": "Pilea Moon Valley",
+    "latin_name": "Pilea involucrata",
+    "type": "Herbaceous",
+    "soil": "Nutrient‑rich, loose, well‑draining mix (peat/compost + perlite + coco coir)",
+    "light": "Bright indirect light; avoid harsh direct sun",
+    "water": "Water regularly but let the top ~2 cm dry; keep soil lightly moist but never waterlogged",
+    "donts": "No soggy soil  \nNo intense direct sun  \nNo heavy compact mix",
+    "image": "herbaceous.jpg"
+  },
+  {
+    "id": "kalanchoe-thyrsiflora",
+    "common_name": "Paddle Plant (Kalanchoe thyrsiflora)",
+    "latin_name": "Kalanchoe thyrsiflora",
+    "type": "Succulent",
+    "soil": "Sandy, well‑draining cactus/succulent mix",
+    "light": "Full sun outdoors; bright direct or bright indirect light indoors",
+    "water": "Water only when the soil has completely dried out; reduce watering in winter",
+    "donts": "No overwatering  \nNo poorly drained soil  \nNo constant shade",
+    "image": "succulent.jpg"
+  },
+  {
+    "id": "crassula-ovata-jade",
+    "common_name": "Jade Plant",
+    "latin_name": "Crassula ovata",
+    "type": "Succulent",
+    "soil": "Loose, well‑draining cactus/succulent mix (potting soil + perlite)",
+    "light": "Bright indirect light with some direct sun",
+    "water": "Allow soil to dry between waterings; water thoroughly and reduce in winter",
+    "donts": "No soggy soil  \nNo overwatering  \nNo low light",
+    "image": "succulent.jpg"
+  },
+  {
+    "id": "ceropegia-woodii-hearts-entangled",
+    "common_name": "String of Hearts",
+    "latin_name": "Ceropegia woodii",
+    "type": "Trailing Succulent",
+    "soil": "Freely draining cactus/succulent mix",
+    "light": "Bright indirect light; tolerates some morning or filtered sun",
+    "water": "Allow soil to dry out completely between waterings; water sparingly",
+    "donts": "No soggy soil  \nNo overwatering  \nNo prolonged low light",
+    "image": "succulent.jpg"
+  },
+  {
+    "id": "echeveria-pulidonis",
+    "common_name": "Echeveria pulidonis",
+    "latin_name": "Echeveria pulidonis",
+    "type": "Succulent",
+    "soil": "Well‑draining, porous succulent mix (potting soil + sand + perlite)",
+    "light": "Full sun to bright light; provide partial shade on very hot days",
+    "water": "Allow soil to dry completely before watering; water sparingly",
+    "donts": "No overwatering  \nNo standing water  \nNo heavy, non‑draining soil",
+    "image": "succulent.jpg"
+  },
+  {
+    "id": "yucca-gigantea-spineless-yucca",
+    "common_name": "Spineless Yucca",
+    "latin_name": "Yucca gigantea",
+    "type": "Succulent Tree",
+    "soil": "Loose, sandy, well‑draining soil",
+    "light": "Full sun",
+    "water": "Allow soil to dry completely between waterings; water sparingly",
+    "donts": "No overwatering  \nNo soggy soil  \nNo dark shade",
+    "image": "succulent.jpg"
+  },
+  {
+    "id": "lace-aloe",
+    "common_name": "Lace Aloe",
+    "latin_name": "Aloe aristata",
+    "type": "Succulent",
+    "soil": "Well‑draining cactus/succulent mix",
+    "light": "Bright indirect light; light afternoon shade outdoors",
+    "water": "Allow soil to dry between waterings; water sparingly",
+    "donts": "No soggy soil  \nNo frost exposure  \nNo prolonged shade",
+    "image": "succulent.jpg"
+  },
+  {
+    "id": "epiphyllum-orchid-cactus",
+    "common_name": "Orchid Cactus",
+    "latin_name": "Epiphyllum spp.",
+    "type": "Cactus",
+    "soil": "Loose, fast‑draining mix with perlite/bark/pumice (azalea‑type mix)",
+    "light": "Filtered or dappled light; partial sun; avoid full midday sun",
+    "water": "Keep potting mix moist but not soggy during growth; let the top third dry; reduce watering in winter",
+    "donts": "No full midday sun  \nNo overwatering or soggy soil  \nNo very dry air",
+    "image": "cactus.jpg"
+  },
 ];

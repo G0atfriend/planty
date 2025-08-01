@@ -6,6 +6,26 @@
  * based on plant care categories (soil, light, water and DON'Ts).
  */
 
+/**
+ * Normalise an answer string by converting to lowercase, removing punctuation,
+ * replacing HTML <br> tags with spaces, splitting into words, sorting them and
+ * joining back together. This allows comparisons that ignore word order and
+ * minor punctuation differences.
+ * @param {string} str
+ * @returns {string}
+ */
+function normalizeAnswer(str) {
+  if (!str) return '';
+  return str
+    .toLowerCase()
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/[^\w\s]/g, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .sort()
+    .join(' ');
+}
+
 // Plant data array. Will be initialised from plantsData.js and processed to
 // remove duplicates and assign new images from our curated collection.
 let plants = [];
@@ -68,8 +88,16 @@ const imageMap = {
   'pepperspot-peperomia': '49_49_raindrop_peperomia.jpg',
   'zebra-plant': '55_55_zebra_plant.jpg',
   'gymnocalycium-cactus': '57_57_gymnocalycium_cactus.jpg',
-  'bunnyear-cactus': '59_59_bunnyear_cactus.jpg',
-  'pink-anthurium': '60_60_pink_anthurium.jpg'
+  'bunnyear-cactus': '59_59_bunnyear_cactus.jpg'
+  // New species introduced in this version
+  , 'pilea-moon-valley': '61_pilea_alumi_moon_valley.jpg'
+  , 'kalanchoe-thyrsiflora': '62_kalanchoe_not_flowering_thyrsiflora.jpg'
+  , 'crassula-ovata-jade': '63_crassula_ovata_jade.jpg'
+  , 'ceropegia-woodii-hearts-entangled': '64_ceropegia_woodii_hearts_entangled.jpg'
+  , 'echeveria-pulidonis': '65_pulidonis_echeveria.jpg'
+  , 'yucca-gigantea-spineless-yucca': '66_yucca_gigantea_spineless_yucca.jpg'
+  , 'lace-aloe': '67_lace_aloe_aloe_aristata.jpg'
+  , 'epiphyllum-orchid-cactus': '68_epiphyllum_orchid_cacti.jpg'
 };
 // State variables for the quiz
 let currentQuestion = null;
@@ -174,7 +202,8 @@ function startQuiz() {
   const qCountVal = document.querySelector('input[name="questionCount"]:checked').value;
   let maxQuestions;
   if (qCountVal === 'allplanties') {
-    maxQuestions = 60;
+    // Use the current number of loaded plants rather than a hard‑coded 60
+    maxQuestions = plants.length;
   } else if (qCountVal === 'all') {
     maxQuestions = questionList.length;
   } else {
@@ -259,14 +288,15 @@ function showCurrentQuestion() {
     } else {
       questionEl.innerHTML = `What should you AVOID for <strong>${qObj.plant.common_name}</strong> when it comes to ${categoryLabel}?`;
     }
-    // compute the correct answer
+    // compute the correct answer string and its normalised form
     let correctAnswer = '';
     if (qObj.type === 'like') {
       correctAnswer = qObj.plant[cat] ? qObj.plant[cat].toString() : '';
     } else {
       correctAnswer = qObj.plant.donts ? qObj.plant.donts.toString().split('\n')[0] : '';
     }
-    // gather wrong answers from other plants for this category
+    const correctNormalized = normalizeAnswer(correctAnswer);
+    // gather wrong answers from other plants for this category and deduplicate
     const wrongValues = plants
       .filter((p) => p.id !== qObj.plant.id && p[cat])
       .map((p) => {
@@ -276,18 +306,22 @@ function showCurrentQuestion() {
           return p.donts ? p.donts.toString().split('\n')[0] : '';
         }
       })
-      .filter((ans) => ans && ans !== correctAnswer);
-    shuffle(wrongValues);
-    const options = [correctAnswer, ...wrongValues.slice(0, 3)];
+      .filter((ans) => ans && normalizeAnswer(ans) !== correctNormalized);
+    // deduplicate wrong answers
+    const uniqueWrong = Array.from(new Set(wrongValues));
+    shuffle(uniqueWrong);
+    const options = [correctAnswer, ...uniqueWrong.slice(0, 3)];
     shuffle(options);
     options.forEach((opt) => {
       const li = document.createElement('li');
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       btn.innerHTML = opt.replace(/\n/g, '<br>');
-      btn.dataset.correct = opt === correctAnswer ? 'true' : 'false';
+      // mark as correct if the normalised strings match
+      const optNorm = normalizeAnswer(opt);
+      btn.dataset.correct = optNorm === correctNormalized ? 'true' : 'false';
       btn.onclick = () => {
-        const isCorrect = opt === correctAnswer;
+        const isCorrect = optNorm === correctNormalized;
         handleQuizAnswer(btn, isCorrect);
       };
       li.appendChild(btn);
